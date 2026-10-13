@@ -1,0 +1,27 @@
+.pay-method-container {
+  max-width: 600px;
+  margin: 6vh auto 0;
+  padding: 0 16px;
+}
+
+.select-method-ip {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  margin: 12px 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+}
+.select-method-ip:has(input:checked) {
+  border-color: var(--accent);
+}
+.select-method-ip input {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.select-method-ip label {
+  margin-left: 12px;
+  flex: 1;
+  cursor: pointer;
+}

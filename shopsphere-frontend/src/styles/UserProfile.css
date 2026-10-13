@@ -1,0 +1,21 @@
+.user-dets-container {
+  max-width: 440px;
+  margin: 5vh auto 0;
+  padding: 0 16px;
+}
+
+.update-btn {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
+  padding: 0.7rem 1.1rem;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: var(--accent);
+  color: #fff;
+  font: 600 0.95rem var(--font-body);
+  cursor: pointer;
+}
+.update-btn:hover {
+  background: var(--accent-dark);
+}

@@ -1,0 +1,90 @@
+.row-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 32px;
+  margin: 24px;
+}
+
+.col-4 {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  padding: 20px;
+}
+.col-4 h1 {
+  margin-bottom: 24px;
+  font-size: 1.6rem;
+}
+.col-4 ul {
+  list-style: none;
+}
+
+.row1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.6fr 0.4fr 0.3fr;
+  gap: 20px;
+  margin: 12px 0;
+  align-items: center;
+  background: var(--panel);
+  border-radius: var(--radius-m);
+  padding: 14px;
+}
+
+.small {
+  display: flex;
+  align-items: center;
+}
+.small img {
+  height: 110px;
+  max-width: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.remove-btn button {
+  padding: 8px 12px;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.remove-btn button:hover {
+  color: var(--danger);
+}
+
+.price {
+  font-weight: 700;
+}
+
+.card-body .checkout-btn {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+}
+
+@media (max-width: 900px) {
+  .row-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .row1 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .qty-select {
+    grid-column: 1 / 3;
+  }
+  .qty-select select {
+    width: 100%;
+  }
+  .row1 p {
+    grid-column: 1 / 3;
+    font-weight: 700;
+  }
+  .remove-btn {
+    display: flex;
+    justify-content: center;
+    grid-column: 1 / 3;
+  }
+}

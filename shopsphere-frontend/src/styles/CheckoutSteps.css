@@ -1,0 +1,25 @@
+.steps-conatiner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 900px;
+  margin: 8px auto 32px;
+  padding: 0 24px;
+}
+.steps-conatiner > div {
+  border-top: 4px solid var(--line);
+  color: var(--ink-soft);
+  padding: 12px 0;
+  font-weight: 500;
+}
+.steps-conatiner > div.active {
+  border-top-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .steps-conatiner {
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+}

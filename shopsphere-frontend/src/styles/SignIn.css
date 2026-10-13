@@ -1,0 +1,44 @@
+.signin-container {
+  max-width: 440px;
+  margin: 6vh auto 0;
+  padding: 0 16px;
+}
+
+.form h1 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.form-ip-sec {
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+}
+.form-ip-sec label {
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.form-ip-sec input {
+  margin-top: 8px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  margin-top: 28px;
+}
+
+.new-user-register {
+  margin-top: 24px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.new-user-register a {
+  color: var(--accent);
+  font-weight: 600;
+  margin-left: 6px;
+}
+.new-user-register a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,32 @@
+#order-id {
+  margin: 0 24px 24px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  word-break: break-all;
+}
+.order-page-pay-btn {
+  margin-top: 32px;
+}
+
+.upi-pay {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+.upi-btn {
+  display: inline-block;
+}
+.upi-pay input {
+  max-width: 260px;
+}
+
+@media (max-width: 900px) {
+  .order-row1 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .order-row1 p {
+    grid-column: 1 / 3;
+  }
+}

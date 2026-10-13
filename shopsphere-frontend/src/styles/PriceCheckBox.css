@@ -1,0 +1,31 @@
+.price-range-checkbox {
+  display: inline-block;
+  margin: 8px 8px 0 0;
+  padding: 0 14px 0 6px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.price-range-checkbox:hover {
+  border-color: var(--accent);
+}
+.price-range-checkbox label {
+  margin-left: 2px;
+}
+.price-range-checkbox .MuiRadio-colorSecondary.Mui-checked {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .price-range-container {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+  }
+  .price-range-checkbox {
+    margin-bottom: 16px;
+    margin-right: 4px;
+  }
+}

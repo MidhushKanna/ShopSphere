@@ -1,5 +1,1 @@
-.register-container {
-  max-width: 440px;
-  margin: 5vh auto 0;
-  padding: 0 16px;
-}
+@import "./SignIn.css";

@@ -1,16 +1,22 @@
 import bcrypt from "bcryptjs"
 
-export const users =[
+export const users = [
+    {
+        name: "ShopSphere Admin",
+        email: "admin@gmail.com",
+        password: bcrypt.hashSync('admin123', 8),
+        isAdmin: true,
+    },
     {
         name: "Debjit Pramanick",
         email: "debjit1@gmail.com",
-        password: bcrypt.hashSync('1234',8),
+        password: bcrypt.hashSync('1234', 8),
         isAdmin: true,
     },
     {
         name: "Rohan Das",
         email: "rohan67@gmail.com",
-        password: bcrypt.hashSync('1234',8),
+        password: bcrypt.hashSync('1234', 8),
         isAdmin: false,
     },
-]
+];

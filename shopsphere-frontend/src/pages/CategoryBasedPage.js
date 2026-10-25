@@ -7,11 +7,12 @@ import MessageBox from "../components/MessageBox";
 import { listProducts } from "../actions/ProdcutActions";
 import PriceCheckBox from "../components/PriceCheckBox";
 import { prices } from "../data/priceRanges";
+import FilterListIcon from "@material-ui/icons/FilterList";
+import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 
 const CategoryBasedPage = (props) => {
   const [range, setRange] = useState([0, 10000000]);
-
-  const category = props.match.params.cat;
+  const category = props.match.params.cat || "";
 
   const dispatch = useDispatch();
 
@@ -24,7 +25,7 @@ const CategoryBasedPage = (props) => {
 
   const handleFilters = (filters) => {
     const data = prices;
-    let array = [];
+    let array = [0, 10000000];
 
     for (let key in data) {
       if (data[key].id === parseInt(filters, 10)) {
@@ -34,53 +35,80 @@ const CategoryBasedPage = (props) => {
     setRange(array);
   };
 
+  const filteredProducts = products
+    ? products.filter(
+        (product) =>
+          product.category.toLowerCase().includes(category.toLowerCase()) &&
+          product.price <= range[1] &&
+          product.price >= range[0],
+      )
+    : [];
+
   return (
     <div className="search-page-container">
-      <div className="filter-options-container">
-        <button
-          className="clear-filter-btn"
-          onClick={() => setRange([0, 10000000])}
-        >
-          Clear filters
-        </button>
-        <h3>Filter Price:</h3>
+      {/* Sidebar Filters */}
+      <aside className="filter-options-sidebar">
+        <div className="filter-sidebar-header">
+          <div className="filter-header-title">
+            <FilterListIcon />
+            <h3>Filters</h3>
+          </div>
+          <button
+            type="button"
+            className="clear-filter-text-btn"
+            onClick={() => setRange([0, 10000000])}
+            title="Reset price filters"
+          >
+            <RotateLeftIcon fontSize="small" />
+            <span>Reset</span>
+          </button>
+        </div>
 
-        <PriceCheckBox
-          list={prices}
-          handleFilters={(filters) => handleFilters(filters)}
-        />
-      </div>
+        <div className="filter-category-group">
+          <h4 className="filter-group-heading">Price Range</h4>
+          <PriceCheckBox
+            list={prices}
+            handleFilters={(filters) => handleFilters(filters)}
+          />
+        </div>
+      </aside>
 
-      <div className="search-page-product-container">
+      {/* Main Results View */}
+      <main className="search-results-main">
+        <div className="results-top-header-bar">
+          <div>
+            <span className="results-query-pill">Category Collection</span>
+            <h1 className="results-main-title capitalize-title">
+              {category}
+            </h1>
+          </div>
+          {!loading && !error && (
+            <span className="results-count-badge">
+              {filteredProducts.length}{" "}
+              {filteredProducts.length === 1 ? "product found" : "products found"}
+            </span>
+          )}
+        </div>
+
         {loading ? (
-          <LoadingBox />
+          <LoadingBox text="Loading category products..." />
         ) : error ? (
           <MessageBox variant="danger">{error}</MessageBox>
+        ) : filteredProducts.length === 0 ? (
+          <div className="no-search-results-box">
+            <h3>No products found in this category</h3>
+            <p>
+              Try widening your price range filter to view more products.
+            </p>
+          </div>
         ) : (
-          <>
-            <h2 className="sec-title">
-              Products under <span>{category}</span> category
-            </h2>
-            <div className="search-product-container">
-              {products
-                .filter(
-                  (product) =>
-                    product.category
-                      .toLowerCase()
-                      .includes(category.toLowerCase()) &&
-                    product.price <= range[1] &&
-                    product.price >= range[0],
-                )
-                .map((filteredProduct) => (
-                  <Product
-                    key={filteredProduct._id}
-                    product={filteredProduct}
-                  />
-                ))}
-            </div>
-          </>
+          <div className="search-product-grid">
+            {filteredProducts.map((product) => (
+              <Product key={product._id} product={product} />
+            ))}
+          </div>
         )}
-      </div>
+      </main>
     </div>
   );
 };

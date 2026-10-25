@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import userRouter from "./routers/userRouter.js";
+import userRouter, { ensureAdminUser } from "./routers/userRouter.js";
 import productRouter from "./routers/productRouter.js";
 import dotenv from "dotenv";
 import orderRouter from "./routers/orderRouter.js";
@@ -12,23 +12,19 @@ const app = express();
 const port = process.env.PORT || 5000;
 const connection_url = process.env.MONGODB_URL;
 
-/*mongoose.connect(connection_url, {
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});*/
-
-mongoose
-  .connect(connection_url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("MongoDB connected successfully!");
-  })
-  .catch((error) => {
-    console.error("MongoDB connection failed:", error.message);
-  });
+if (!connection_url) {
+  console.error("ERROR: MONGODB_URL is not set in environment variables!");
+} else {
+  mongoose
+    .connect(connection_url)
+    .then(() => {
+      console.log("MongoDB connected successfully!");
+      ensureAdminUser();
+    })
+    .catch((error) => {
+      console.error("MongoDB connection failed:", error.message);
+    });
+}
 
 app.use(express.json());
 app.use(cors());
@@ -45,6 +41,14 @@ app.get("/api/config/upi", (req, res) => {
 
 app.get("/", (req, res) => res.status(200).send("ShopSphere API is running."));
 
-// Listening to  server
+// Central error handling middleware
+app.use((err, req, res, next) => {
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode).send({
+    message: err.message || "An unexpected server error occurred",
+    ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
+  });
+});
 
+// Listening to server
 app.listen(port, () => console.log(`Listening on local host:${port}`));

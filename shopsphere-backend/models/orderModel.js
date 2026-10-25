@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema(
       country: { type: String, required: true },
     },
 
-    paymentMethod: { type: String, required: true, enum: ["PhonePe", "GPay"] },
+    paymentMethod: { type: String, required: true },
     paymentResult: {
       id: String,
       status: String,

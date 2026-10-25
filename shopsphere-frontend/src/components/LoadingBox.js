@@ -1,13 +1,15 @@
-import React from 'react'
-import LoopIcon from '@material-ui/icons/Loop';
-import "../styles/LoadingBox.css"
+import React from "react";
+import "../styles/LoadingBox.css";
 
-const LoadingBox = () => {
-    return (
-        <div className="loading-box">
-            <LoopIcon/>
-        </div>
-    )
-}
+const LoadingBox = ({ text = "Loading..." }) => {
+  return (
+    <div className="loading-box" aria-label="Loading content">
+      <div className="spinner-ring">
+        <div className="spinner-inner"></div>
+      </div>
+      <p className="loading-text">{text}</p>
+    </div>
+  );
+};
 
-export default LoadingBox
+export default LoadingBox;

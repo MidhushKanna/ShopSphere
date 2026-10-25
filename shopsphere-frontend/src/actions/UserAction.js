@@ -36,13 +36,13 @@ export const register = (name,email,password) => async(dispatch) => {
 
 
 
-export const signin = (email,password) => async(dispatch) => {
+export const signin = (email, password, role = "customer") => async (dispatch) => {
     dispatch({
         type: USER_SIGNIN_REQUEST,
-        payload: {email, password}
+        payload: { email, password, role }
     });
-    try{
-        const {data} = await axios.post('/api/users/signin', {email, password});
+    try {
+        const { data } = await axios.post('/api/users/signin', { email, password, role });
         dispatch({
             type: USER_SIGNIN_SUCCESS,
             payload: data

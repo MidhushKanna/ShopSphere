@@ -1,38 +1,93 @@
-.home-product-container {
-  max-width: 1600px;
-  margin: 40px auto;
-  padding: 24px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-l);
-}
-.sec-title {
-  margin: 0 0 16px;
-  color: var(--ink);
-  font-size: 1.4rem;
-}
-.sec-title span {
-  text-transform: capitalize;
+.home-product-section {
+  max-width: 1440px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
 }
 
-.product-container {
+.section-header-block {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.section-badge svg {
+  font-size: 16px !important;
+}
+
+.section-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+}
+
+.products-responsive-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
 }
 
-@media (max-width: 1279px) {
-  .product-container {
-    grid-template-columns: repeat(3, 1fr);
+.empty-catalog-box {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+@media (min-width: 1360px) {
+  .products-responsive-grid {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
-@media (max-width: 900px) {
-  .home-product-container {
-    margin-top: 24px;
-    padding: 16px;
+
+@media (max-width: 1100px) {
+  .products-responsive-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
-  .product-container {
+}
+
+@media (max-width: 768px) {
+  .home-product-section {
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .section-title {
+    font-size: 1.45rem;
+  }
+  .products-responsive-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }

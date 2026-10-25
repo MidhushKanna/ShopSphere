@@ -1,32 +1,287 @@
-#order-id {
-  margin: 0 24px 24px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-  word-break: break-all;
-}
-.order-page-pay-btn {
-  margin-top: 32px;
+.order-details-page-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 4rem;
 }
 
-.upi-pay {
+.order-page-top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5rem 0 2rem;
+  padding: 1.5rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.order-chip-meta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+}
+
+.order-id-headline {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin: 0.35rem 0 0.2rem;
+}
+
+.order-placed-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.order-status-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+  font-size: 0.825rem;
+  font-weight: 700;
+}
+
+.status-paid {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.status-pending {
+  background: var(--warning-light);
+  color: #b45309;
+  border: 1px solid var(--warning-border);
+}
+
+.status-delivered {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.status-transit {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid #c7d2fe;
+}
+
+/* Fulfillment Alerts */
+.fulfillment-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+}
+
+.alert-success-mini {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.alert-info-mini {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid #c7d2fe;
+}
+
+.alert-warning-mini {
+  background: var(--warning-light);
+  color: #b45309;
+  border: 1px solid var(--warning-border);
+}
+
+/* UPI Payment Panel */
+.order-page-pay-container {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.payment-completed-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: var(--success-light);
+  border: 1px solid var(--success-border);
+  border-radius: var(--radius-lg);
+}
+
+.check-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--success);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 0.75rem;
+}
+
+.payment-completed-card h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #065f46;
+  margin-bottom: 0.25rem;
+}
+
+.payment-completed-card p {
+  font-size: 0.85rem;
+  color: #047857;
+}
+
+.upi-panel-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.upi-panel-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.upi-app-direct-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-md);
+  background: #5f259f;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+  transition: var(--transition);
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(95, 37, 159, 0.25);
+}
+
+.upi-app-direct-btn:hover {
+  background: #4a1c7c;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.upi-qr-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-items: flex-start;
-}
-.upi-btn {
-  display: inline-block;
-}
-.upi-pay input {
-  max-width: 260px;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
 }
 
-@media (max-width: 900px) {
-  .order-row1 {
-    grid-template-columns: 1fr 1fr;
+.qr-scan-hint {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 500;
+}
+
+.utr-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.utr-input-box label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.utr-input-box input {
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-align: center;
+  background: var(--surface-alt);
+}
+
+.upi-confirm-btn {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.9rem 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .order-page-top-header {
+    padding: 1.25rem;
   }
-  .order-row1 p {
-    grid-column: 1 / 3;
+  .order-id-headline {
+    font-size: 1.35rem;
   }
+}
+
+/* Cash on Delivery info card */
+.cod-status-widget {
+  margin-top: 1.25rem;
+}
+
+.cod-info-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(22, 163, 74, 0.06), rgba(22, 163, 74, 0.02));
+  border: 1px solid rgba(22, 163, 74, 0.2);
+  border-radius: var(--radius-lg);
+}
+
+.cod-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+}
+
+.cod-info-card h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 0.5rem;
+}
+
+.cod-info-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 1.25rem;
+}
+
+.cod-info-card .fulfillment-alert {
+  margin-top: 0;
 }

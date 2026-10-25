@@ -1,41 +1,43 @@
-import { FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
-import React, {useState} from 'react'
-import "../styles/PriceCheckBox.css"
-
+import React, { useState } from "react";
+import "../styles/PriceCheckBox.css";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
 const PriceCheckBox = (props) => {
+  const [selectedId, setSelectedId] = useState(0);
 
-    const [value, setValue] = useState('0');
+  const handleSelect = (id) => {
+    setSelectedId(id);
+    props.handleFilters(id);
+  };
 
+  return (
+    <div className="price-filters-list">
+      {props.list.map((price) => {
+        const isSelected = selectedId === price.id;
+        return (
+          <button
+            key={price.id}
+            type="button"
+            className={`price-filter-item-btn ${isSelected ? "selected" : ""}`}
+            onClick={() => handleSelect(price.id)}
+          >
+            <div className="filter-radio-icon">
+              {isSelected ? (
+                <CheckCircleIcon fontSize="small" className="radio-checked" />
+              ) : (
+                <RadioButtonUncheckedIcon
+                  fontSize="small"
+                  className="radio-unchecked"
+                />
+              )}
+            </div>
+            <span className="price-filter-label">{price.name}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+};
 
-
-    const [Checked, setChecked] = useState([]);
-
-    const handleToggle = (value) => {
-
-        setValue(value);
-        setChecked(value);
-        props.handleFilters(value);
-
-    }
-
-    
-
-    return (
-        <div className="price-range-container">
-            {props.list.map((price, index)=>(
-                <span className="price-range-checkbox">
-                    
-                    <RadioGroup defaultValue="Any" name="customized-radios" value={value}
-                    onChange = {() => handleToggle(price.id)}>
-
-                        <FormControlLabel value={price.id} control={<Radio />} label={price.name} />
-
-                    </RadioGroup>
-                </span>
-            ))}
-        </div>
-    )
-}
-
-export default PriceCheckBox
+export default PriceCheckBox;

@@ -1,29 +1,33 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import { cartReducer } from './reducers/CartReducer';
-import { orderCreateReducer, orderDetailsReducer, orderMineListReducer, orderPayReducer } from './reducers/OrderReducer';
-import { prodcutDetailsReducer, prodcutListReducer } from './reducers/ProductReducer';
+import { orderCreateReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderMineListReducer, orderPayReducer } from './reducers/OrderReducer';
+import { productDetailsReducer, productListReducer } from './reducers/ProductReducer';
 import { userDetailsReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer } from './reducers/UserReducer';
 
+const safeParseStorage = (key, fallback) => {
+    try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : fallback;
+    } catch (err) {
+        console.warn(`Failed to parse localStorage key "${key}":`, err);
+        return fallback;
+    }
+};
+
 const initialState = {
-    cart:{
-        cartItems: localStorage.getItem('cartItems')
-         ? JSON.parse(localStorage.getItem('cartItems'))
-         : [],
-        shippingAddress: localStorage.getItem('shippingAddress')
-         ? JSON.parse(localStorage.getItem('shippingAddress'))
-         : {},
+    cart: {
+        cartItems: safeParseStorage('cartItems', []),
+        shippingAddress: safeParseStorage('shippingAddress', {}),
         paymentMethod: 'PayPal',
     },
-    userSignin:{
-        userInfo: localStorage.getItem('userInfo')
-         ? JSON.parse(localStorage.getItem('userInfo'))
-         : null,
+    userSignin: {
+        userInfo: safeParseStorage('userInfo', null),
     }
 };
 const reducer = combineReducers({
-    productList: prodcutListReducer,
-    productDetails: prodcutDetailsReducer,
+    productList: productListReducer,
+    productDetails: productDetailsReducer,
     cart: cartReducer,
     userRegister: userRegisterReducer,
     userSignin: userSigninReducer,
@@ -31,6 +35,8 @@ const reducer = combineReducers({
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     orderMineList: orderMineListReducer,
+    orderList: orderListReducer,
+    orderDeliver: orderDeliverReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile : userUpdateProfileReducer
 });

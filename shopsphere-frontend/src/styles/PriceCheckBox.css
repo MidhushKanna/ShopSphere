@@ -1,31 +1,68 @@
-.price-range-checkbox {
-  display: inline-block;
-  margin: 8px 8px 0 0;
-  padding: 0 14px 0 6px;
+.price-filters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.price-filter-item-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.6rem 0.85rem;
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 0.95rem;
-  white-space: nowrap;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
 }
-.price-range-checkbox:hover {
-  border-color: var(--accent);
+
+.price-filter-item-btn:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-alt);
 }
-.price-range-checkbox label {
-  margin-left: 2px;
+
+.price-filter-item-btn.selected {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
 }
-.price-range-checkbox .MuiRadio-colorSecondary.Mui-checked {
-  color: var(--accent);
+
+.filter-radio-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.radio-checked {
+  color: var(--primary) !important;
+  font-size: 18px !important;
+}
+
+.radio-unchecked {
+  color: var(--border-strong) !important;
+  font-size: 18px !important;
+}
+
+.price-filter-label {
+  flex: 1;
 }
 
 @media (max-width: 900px) {
-  .price-range-container {
-    display: flex;
-    align-items: center;
+  .price-filters-list {
+    flex-direction: row;
     overflow-x: auto;
+    padding-bottom: 0.5rem;
   }
-  .price-range-checkbox {
-    margin-bottom: 16px;
-    margin-right: 4px;
+  .price-filter-item-btn {
+    white-space: nowrap;
+    width: auto;
   }
 }

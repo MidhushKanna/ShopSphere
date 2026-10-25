@@ -1,0 +1,16 @@
+{
+  "name": "shopsphere",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ShopSphere - Modern E-Commerce Platform",
+  "scripts": {
+    "start:backend": "npm start --prefix shopsphere-backend",
+    "start:frontend": "npm start --prefix shopsphere-frontend",
+    "dev": "concurrently -k -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm run dev --prefix shopsphere-backend\" \"npm run start --prefix shopsphere-frontend\"",
+    "build": "npm run build --prefix shopsphere-frontend",
+    "install:all": "npm install && npm install --prefix shopsphere-backend && npm install --prefix shopsphere-frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
